@@ -1,0 +1,14 @@
+.box{
+    flex-basis: 100px;
+    background: rgba(249, 249, 249, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+    padding: 20px 30px;
+}
+.title{
+    font-size: 17pt;
+    padding-bottom: 15px;
+    color: #575757;
+}
+.paragraph{
+    color: #575757;
+}

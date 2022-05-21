@@ -1,0 +1,26 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.titleMid{
+    font-size: 17pt;
+    line-height: 28pt;
+    color: #575757;
+}
+.titleSmall{
+    font-size: 12pt;
+    color: #575757;
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.profileImg{
+    width: 22px;
+    height: 22px;
+    padding-left: 15px;
+    transform: translateY(2px);
+}
