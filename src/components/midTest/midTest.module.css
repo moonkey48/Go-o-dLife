@@ -9,6 +9,11 @@
     padding-bottom: 15px;
     color: #575757;
 }
+.titleBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .paragraph{
     color: #575757;
 }

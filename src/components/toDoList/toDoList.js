@@ -1,14 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import s from './toDoList.module.css';
 
-const ToDoList = () => {
-    const [list, setList] = useState([
-        "somthing to do today",
-        "somthing to do today",
-        "somthing to do today",
-        "somthing to do today",
-        "somthing to do today",
-    ]);
+const ToDoList = ({users, userId}) => {
+    const [list, setList] = useState([]);
+    useEffect(()=>{
+        const list = users[userId].ToDoList;
+        setList(list);
+    },[]);
     return(
         <div className={s.box}>
             <h1 className={s.title}>To Do List</h1>

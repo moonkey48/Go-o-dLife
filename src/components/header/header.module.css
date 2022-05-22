@@ -24,3 +24,17 @@
     padding-left: 15px;
     transform: translateY(2px);
 }
+.logoutBtn{
+    opacity: 0.5;
+    background-color: white;
+    border: none;
+    color: #575757;
+    padding: 10px;
+    font-weight: 600;
+    transform: translateY(2px);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.logoutBtn:hover{
+    opacity: 1;
+}
