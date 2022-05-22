@@ -1,4 +1,5 @@
 import React from 'react';
+import AchieveRate from '../achieveRate/achieveRate';
 import FindOthers from '../findOthers/findOthers';
 import Header from '../header/header';
 import MidTest from '../midTest/midTest';
@@ -21,6 +22,7 @@ const Main = () => {
                     <ToDoList/>
                     <div className={s.rightSection}>
                         <Weather/>
+                        <AchieveRate/>
                     </div>
                 </div>
             </div>

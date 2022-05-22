@@ -5,11 +5,12 @@
     padding: 20px 30px;
 }
 .title{
-    font-size: 17pt;
+    font-size: 12pt;
+    line-height: 20pt;
     padding-bottom: 15px;
     color: #575757;
 }
 .from{
     font-size: 9pt;
-    color: #575757;
+    color: #D0D0D0;
 }

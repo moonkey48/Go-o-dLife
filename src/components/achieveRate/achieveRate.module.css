@@ -2,36 +2,35 @@
     background: rgba(249, 249, 249, 0.5);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
     padding: 20px 30px;
-    display: flex;
-}
-.leftSection{
-    flex: 1 1 auto;
-}
-.rightSection{
-    flex: 1 1 auto;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .titleLarge{
     font-size: 22pt;
     color: #575757;
 }
-.titleMid{
-    font-size: 17pt;
-    color: #575757;
-    font-weight: bold;
-}
-.paragraphLarge{
-    font-size: 12pt;
-    color: #575757;
-    padding-bottom: 15px;
-}
+
 .paragraphSmall{
     font-size: 9pt;
     color: #575757;
     padding-bottom: 15px;
 }
-.icon{
-    width: 120px;
+
+.line{
+    width: 100%;
+    height: 20px;
+    border-bottom: 1px dashed #D7D7D7;
+}
+.rates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.rate{
+    width: 50px;
+    background-color: #D9D9D9;
 }
