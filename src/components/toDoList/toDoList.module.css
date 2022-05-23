@@ -38,3 +38,51 @@ ul{
     border-bottom: 1px solid rgba(0,0,0,0.08);
     width: 100%;
 }
+.form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.btn{
+    width: 20px;
+    height: 18px;
+    border: none;
+    font-size: 17pt;
+    color: #CECBCB;
+    transition: 0.2s;
+    cursor: pointer;
+    background: none;
+    transform: translateY(-4px);
+}
+.input{
+    font-size: 12pt;
+    font-weight: 500;
+    color: #575757;
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    width: 100%;
+    background: none;
+}
+.input:focus{
+    outline: none;
+}
+.checked{
+    stroke: #66BB6A;
+    transition: 0.1s;
+    cursor: pointer;
+}
+.checked:hover{
+    stroke: #E77575;
+}
+.delete{
+    cursor: pointer;
+}
+.delete:hover .deleteBtn{
+    stroke: #E0DFDF;
+}
+.deleteBtn{
+    stroke: #F2F2F2;
+    transition: 0.2s;
+}

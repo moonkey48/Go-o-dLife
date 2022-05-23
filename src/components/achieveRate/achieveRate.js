@@ -11,7 +11,7 @@ const AchieveRate = () => {
             </div>
             <div className={s.rates}>
                 {rates.map(rate=>{
-                    return <div className={s.rate} style={{height:`${rate}px`}}/>
+                    return <div key={rate} className={s.rate} style={{height:`${rate}px`}}/>
                 })}
             </div>
         </div>

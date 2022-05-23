@@ -14,7 +14,7 @@ const App = ({authService}) =>{
       email: 'gogo4905@gmail.com',
       purpose: 'get level2 grade',
       test: '3시간동안 문제 2개 풀기',
-      toDoList: ['somethingTodo1','somethingTodo2','somethingTodo3','somethingTodo4'],
+      toDoList: [['somethingTodo1',false],['somethingTodo2',false],['somethingTodo3',false],['somethingTodo4',false]],
       testDay: 10,
       day: 1
     },
@@ -24,7 +24,7 @@ const App = ({authService}) =>{
       email: 'gogo4905@gmail.com',
       purpose: 'get level5 grade',
       test: '2시간동안 문제 10개 풀기',
-      toDoList: ['somethingTodo1','somethingTodo2','somethingTodo3','somethingTodo4'],
+      toDoList: [['somethingTodo1',false],['somethingTodo2',false],['somethingTodo3',false],['somethingTodo4',false]],
       testDay: 10,
       day: 2
     },
@@ -34,7 +34,7 @@ const App = ({authService}) =>{
       email: 'gogo4905@gmail.com',
       purpose: 'get level2 grade',
       test: '1시간동안 문제 5개 풀기',
-      toDoList: ['somethingTodo1','somethingTodo2','somethingTodo3','somethingTodo4'],
+      toDoList: [['somethingTodo1',false],['somethingTodo2',false],['somethingTodo3',false],['somethingTodo4',false]],
       testDay: 10,
       day: 3
     },

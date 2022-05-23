@@ -10,17 +10,6 @@ const Signup = ({setNewUser}) => {
     const dayRef = useRef();
     const testRef = useRef();
     const testDayRef = useRef();
-
-    // 'uid3': {
-    //     uid: 'uid3',
-    //     nickname: 'key',
-    //     email: 'gogo4905@gmail.com',
-    //     purpose: 'get level2 grade',
-    //     test: '1시간동안 문제 5개 풀기',
-    //     toDoList: ['somethingTodo1','somethingTodo2','somethingTodo3','somethingTodo4'],
-    //     testDay: 10,
-    //     day: 3
-    //   },
     
     const handleSign = () =>{
         const new_user ={
@@ -34,7 +23,7 @@ const Signup = ({setNewUser}) => {
             testDay: testDayRef.current.value,
         }
         setNewUser(new_user);
-        navigate('/main',{state:{ uid: state.uid}});
+        navigate('/main',{state: {uid: state.uid}});
     }
 
     return(

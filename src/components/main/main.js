@@ -28,13 +28,9 @@ const Main = ({authService, users}) => {
         authService.logout();
     }
     useEffect(()=>{
-        authService.onAuthChange(user => {
-            if (user) {
-                setUserId(user.uid);
-            } else {
-                navigate('/')
-            }
-        });
+        setUserId(state.uid)
+        console.log(state.uid);
+        console.log(users[state.uid]);
     },[]);
     return(
         <div className={s.container}>
