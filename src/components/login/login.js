@@ -28,23 +28,12 @@ const Login = ({authService,users,setNewUser}) => {
                 }
             });
     }   
-    const handleSign = () =>{
-
-    }
-    // useEffect(()=>{
-    //     authService
-    //         .onAuthChange(user=>{
-    //             user && goToMain(user.id)
-    //         })
-    // })
+    
     return(
         <div className={s.container}>
             <div className={s.loginBox}>
                 <h2 className={s.title}>갓생프로젝트에 오신 것을 환영합니다.</h2> 
-                <div className={s.btnBox}>
-                    <button className={`${s.btn} ${s.sign}`}>회원 가입</button>
-                    <button onClick={handleLogin} className={`${s.btn} ${s.login}`}>구글 로그인</button>
-                </div>
+                <button onClick={handleLogin} className={`${s.btn} ${s.login}`}>구글 로그인</button>
             </div>
         </div>
     );
