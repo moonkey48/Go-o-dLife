@@ -2,16 +2,22 @@ import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import s from './login.module.css';
 
-const Login = ({authService,users,setNewUser}) => {
+const Login = ({authService,users,database}) => {
     const navigate = useNavigate();
-    const goToMain = (userId) =>{
-        navigate({
-            pathname: '/main',
-            state: { id: userId },
-        })
+
+    const goToMain = (user) =>{
+        navigate('/main', 
+            { state: 
+                {uid:user.uid}
+            }
+        );
     }
     const goToSignup = (user) =>{
-        navigate('/signup', { state: {uid:user.uid, email:user.email, name:user.displayName}});
+        navigate('/signup', 
+            { state: 
+                {uid:user.uid, email:user.email, name:user.displayName}
+            }
+        );
     }
     const handleLogin = () =>{
         authService
@@ -19,12 +25,12 @@ const Login = ({authService,users,setNewUser}) => {
             .then(result => {
                 console.log(result);
                 console.log(users[result.user.uid]);
-                if(users[result.user.uid]===undefined){
+                if(!!users[result.user.uid]){
+                    console.log('already user');
+                    goToMain(result.user);
+                }else{
                     console.log('new user');
                     goToSignup(result.user);
-                }else{
-                    console.log('already user');
-                    goToMain(result.user.uid);
                 }
             });
     }   

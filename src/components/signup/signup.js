@@ -2,7 +2,7 @@ import React,{useRef,useState} from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
 import s from './signup.module.css';
 
-const Signup = ({setNewUser}) => {
+const Signup = ({setNewUser,database}) => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const [alertText, setAlertText] = useState('');
@@ -34,6 +34,7 @@ const Signup = ({setNewUser}) => {
     const handleSign = () =>{
         const typeResult = checkType();
         if(typeResult){
+            
             const new_user ={
                 uid: state.uid,
                 nickname: state.name,
@@ -44,6 +45,7 @@ const Signup = ({setNewUser}) => {
                 day: dayRef.current.value,
                 testDay: testDayRef.current.value,
             }
+            database.setDatabase(state.uid,state.name,state.email,purposeRef.current.value, testRef.current.value,[],dayRef.current.value,testDayRef.current.value);
             setNewUser(new_user);
             navigate('/main',{state: {uid: state.uid}});
         }

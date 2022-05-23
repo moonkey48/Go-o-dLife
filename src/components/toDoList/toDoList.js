@@ -39,7 +39,7 @@ const ToDoList = ({users, userId}) => {
             <h1 className={s.title}>To Do List</h1>
             <ul className={s.list}>
                 {list && list.map((item,index)=>{
-                    return  <li className={s.listItem}>
+                    return  <li key={index} className={s.listItem}>
                     {item[1] === true?
                     <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path className={s.checked} onClick={()=>toggleCheck(index)} d="M3 6.5L8 11.5L17 2.5" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>

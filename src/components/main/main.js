@@ -9,11 +9,10 @@ import Weather from '../weather/weather';
 import s from './main.module.css';
 import { useNavigate,useLocation } from 'react-router-dom';
 
-const Main = ({authService, users}) => {
+const Main = ({setUsers,authService, users,database}) => {
     const navigate = useNavigate();
     const { state } = useLocation(); 
     const [userId, setUserId] = useState();
-
 
     useEffect(()=>{
         authService.onAuthChange(user => {
@@ -28,10 +27,18 @@ const Main = ({authService, users}) => {
         authService.logout();
     }
     useEffect(()=>{
-        setUserId(state.uid)
         console.log(state.uid);
-        console.log(users[state.uid]);
+        // setUserId(state.uid);
     },[]);
+    useEffect(()=>{
+        if (!userId) {
+            return;
+        }
+        const stopSync = database.readData(userId, user => {
+            setUsers({...users,userId:user});
+        });
+        return () => stopSync();
+    },[database, userId]);
     return(
         <div className={s.container}>
             <div className={s.main}>
