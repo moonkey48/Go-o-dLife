@@ -1,21 +1,12 @@
-import {getDatabase,ref,set,onValue,off,child, get} from 'firebase/database';
+import {getDatabase,ref,set,onValue,off,child, get,remove} from 'firebase/database';
 
 class StorageService{
     constructor(app){
         this.db = getDatabase(app);
     }
 
-    setDatabase = (userId, nickname , email,purpose,test,toDoList, day, testDay)=>{
-        set(ref(this.db, 'users/' + userId), {
-            uid: userId,
-            nickname: nickname,
-            email: email,
-            purpose:purpose,
-            test:test,
-            toDoList:toDoList,
-            day:day,
-            testDay:testDay,
-        });
+    saveDatabase = (userId, user)=>{
+        set(ref(this.db, 'users/' + userId), user);
     }
     readData = (userId, callback) =>{
         const query = ref(this.db, 'users/' + userId);
@@ -24,6 +15,9 @@ class StorageService{
             callback(user);
         });
         return ()=>off(query);
+    }
+    deleteData = (userId) =>{
+        remove(ref(this.db, 'users/' + userId));
     }
     readAllData = (callback) =>{
         const query = ref(this.db, 'users/');

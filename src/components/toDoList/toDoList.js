@@ -1,23 +1,36 @@
 import React, {useState,useEffect,useRef} from 'react';
 import s from './toDoList.module.css';
 
-const ToDoList = ({users, userId}) => {
+const ToDoList = ({users, userId,handleListChange}) => {
     const formRef = useRef();
     const addRef = useRef();
     const [list, setList] = useState([]);
     useEffect(()=>{
-        if(userId){
-            const list = users[userId].ToDoList;
-            setList(list);
-        }
-    },[]);
-
+        handleListChange([...list]);
+        console.log([...list]);
+    },[list]);
+    
     useEffect(()=>{
         if(userId){
-            const list = users[userId].ToDoList;
-            setList(list);
+            if(users[userId]){
+                if(users[userId].toDoList){
+                    let list = [...users[userId].toDoList];
+                    setList(list);
+                }
+            }
         }
-    },[users]);
+    },[]);
+    useEffect(()=>{
+        if(userId){
+            if(users[userId]){
+                if(users[userId].toDoList){
+                    let list = [...users[userId].toDoList];
+                    setList(list);
+                }
+            }
+        }
+    },[userId]);
+
     const handleAdd = (e) =>{
         e.preventDefault();
         const newItem =addRef.current.value; 

@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './header.module.css'
 
-const Header = ({handleLogout, users, userId}) => {
+const Header = ({handleLogout, users, userId,onDelete}) => {
+    useEffect(()=>{
+        console.log(users);
+        console.log(userId);
+        console.log(users[userId]?.nickname);
+    },[users, userId]);
+    const handleDelete = () =>{
+        onDelete(userId);
+    }
+
     return(
         <header className={s.header}>
             <h2 className={s.titleMid}>
@@ -14,6 +23,7 @@ const Header = ({handleLogout, users, userId}) => {
                 <h2 className={s.titleSmall}>{users[userId]?.nickname}</h2>
                 <img className={s.profileImg} src='/images/profile.png' alt='profile'></img>
                 <button className={s.logoutBtn} onClick={()=>handleLogout()}>logout</button>
+                <button className={s.logoutBtn} onClick={handleDelete}>delete Project</button>
             </div>
             
         </header>

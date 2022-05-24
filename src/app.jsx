@@ -12,25 +12,21 @@ const App = ({authService,database}) =>{
   useEffect(()=>{
     database.readAllData((value)=>{setUsers(value)});
   },[]);
-  useEffect(()=>{
-    console.log(users);
-  },[users]);
 
-  const setNewUser = new_user =>{
-     let updated = {...users};
-     updated[new_user.uid] = new_user;
+  const createOrUpdate = (userId, user)=>{
+    let updated = {...users};
+     updated[userId] = user;
      setUsers(updated);
-     console.log(updated);
-
+     database.saveDatabase(userId, user);
   }
 
   
   return(
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login database={database} users={users} authService={authService}/>} />
-        <Route path='/main' element={<Main setUsers={setUsers} database={database} users={users} authService={authService} />}/>
-        <Route path='/signup' element={<Signup database={database} setNewUser={setNewUser}  authService={authService} />}/>
+        <Route path='/' element={<Login users={users} authService={authService}/>} />
+        <Route path='/main' element={<Main handleChange={createOrUpdate} setUsers={setUsers} database={database} users={users} authService={authService} />}/>
+        <Route path='/signup' element={<Signup handleNewUser={createOrUpdate} database={database}  authService={authService} />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -9,7 +9,7 @@ import Weather from '../weather/weather';
 import s from './main.module.css';
 import { useNavigate,useLocation } from 'react-router-dom';
 
-const Main = ({setUsers,authService, users,database}) => {
+const Main = ({setUsers, authService, users, database, handleChange}) => {
     const navigate = useNavigate();
     const { state } = useLocation(); 
     const [userId, setUserId] = useState();
@@ -17,19 +17,22 @@ const Main = ({setUsers,authService, users,database}) => {
     useEffect(()=>{
         authService.onAuthChange(user => {
             if (user) {
+                console.log(user.uid);
                 setUserId(user.uid);
             } else {
                 navigate('/')
             }
         });
-    },[navigate,authService,userId]);
+    },[navigate, authService, userId]); 
     const onLogout = () =>{
         authService.logout();
     }
     useEffect(()=>{
         console.log(state.uid);
-        // setUserId(state.uid);
+        console.log(users);
+        setUserId(state.uid);
     },[]);
+
     useEffect(()=>{
         if (!userId) {
             return;
@@ -37,19 +40,36 @@ const Main = ({setUsers,authService, users,database}) => {
         const stopSync = database.readData(userId, user => {
             setUsers({...users,userId:user});
         });
-        return () => stopSync();
+        return stopSync();
     },[database, userId]);
+
+    const handleDelete = (uid) =>{
+        database.deleteData(uid);
+        console.log(`navigate with delete`);
+        navigate('/');
+    }
+
+    const handleListChange = (list) =>{
+        let updated = {...users[userId]};
+        if(list){
+            updated.toDoList = [...list];
+        }else{
+            updated.toDoList = [];
+        }
+        console.log(updated);
+        handleChange(userId, updated);
+    }
     return(
         <div className={s.container}>
             <div className={s.main}>
-                <Header users={users} userId={userId} handleLogout={onLogout} />
+                <Header onDelete={handleDelete} users={users} userId={userId} handleLogout={onLogout}/>
                 <div className={s.content}>
                     <div className={s.leftSection}>
                         <MidTest users={users} userId={userId}/>
                         <FindOthers />
                         <Quote />
                     </div>
-                    <ToDoList users={users} userId={userId}/>
+                    <ToDoList users={users} userId={userId} handleListChange={handleListChange}/>
                     <div className={s.rightSection}>
                         <Weather/>
                         <AchieveRate />
