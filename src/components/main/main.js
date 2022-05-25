@@ -9,7 +9,7 @@ import Weather from '../weather/weather';
 import s from './main.module.css';
 import { useNavigate,useLocation } from 'react-router-dom';
 
-const Main = ({setUsers, authService, users, database, handleChange}) => {
+const Main = ({setUsers, authService, users, database, handleChange,quote}) => {
     const navigate = useNavigate();
     const { state } = useLocation(); 
     const [userId, setUserId] = useState();
@@ -62,7 +62,7 @@ const Main = ({setUsers, authService, users, database, handleChange}) => {
                     <div className={s.leftSection}>
                         <MidTest users={users} userId={userId}/>
                         <FindOthers />
-                        <Quote />
+                        <Quote quote={quote}/>
                     </div>
                     <ToDoList users={users} userId={userId} handleListChange={handleListChange}/>
                     <div className={s.rightSection}>

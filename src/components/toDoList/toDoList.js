@@ -1,7 +1,7 @@
 import React, {useState,useEffect,useRef} from 'react';
 import s from './toDoList.module.css';
 
-const ToDoList = ({users, userId,handleListChange}) => {
+const ToDoList = ({users, userId, handleListChange}) => {
     const formRef = useRef();
     const addRef = useRef();
     const [list, setList] = useState([]);
@@ -51,7 +51,7 @@ const ToDoList = ({users, userId,handleListChange}) => {
         <div className={s.box}>
             <h1 className={s.title}>To Do List</h1>
             <ul className={s.list}>
-                {list && list.map((item,index)=>{
+                {users[userId] && users[userId].toDoList.map((item,index)=>{
                     return  <li key={index} className={s.listItem}>
                     {item[1] === true?
                     <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">

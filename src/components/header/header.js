@@ -4,11 +4,7 @@ import s from './header.module.css'
 
 const Header = ({handleLogout, users, userId}) => {
     const navigate = useNavigate();
-    useEffect(()=>{
-        console.log(users);
-        console.log(userId);
-        console.log(users[userId]?.nickname);
-    },[users, userId]);
+   
     const handleEdit = () =>{
         navigate('/edit',
         { state: 

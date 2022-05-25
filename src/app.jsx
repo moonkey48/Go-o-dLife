@@ -6,7 +6,7 @@ import Signup from './components/signup/signup';
 import EditProject from './components/edit-project/edit-project';
 
 
-const App = ({authService,database}) =>{
+const App = ({authService,database,quote}) =>{
 
   const [users, setUsers] = useState({});
 
@@ -29,7 +29,7 @@ const App = ({authService,database}) =>{
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login users={users} authService={authService}/>} />
-        <Route path='/main' element={<Main handleChange={createOrUpdate} setUsers={setUsers} database={database} users={users} authService={authService} />}/>
+        <Route path='/main' element={<Main handleChange={createOrUpdate} setUsers={setUsers} database={database} users={users} authService={authService} quote={quote} />}/>
         <Route path='/signup' element={<Signup handleNewUser={createOrUpdate} database={database}  authService={authService} />}/>
         <Route path='/edit' element={<EditProject handleDelete={onDelete} users={users} editUser={createOrUpdate}/>}/>
       </Routes>
