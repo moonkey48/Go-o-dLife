@@ -43,11 +43,6 @@ const Main = ({setUsers, authService, users, database, handleChange}) => {
         return stopSync();
     },[database, userId]);
 
-    const handleDelete = (uid) =>{
-        database.deleteData(uid);
-        console.log(`navigate with delete`);
-        navigate('/');
-    }
 
     const handleListChange = (list) =>{
         let updated = {...users[userId]};
@@ -62,7 +57,7 @@ const Main = ({setUsers, authService, users, database, handleChange}) => {
     return(
         <div className={s.container}>
             <div className={s.main}>
-                <Header onDelete={handleDelete} users={users} userId={userId} handleLogout={onLogout}/>
+                <Header users={users} userId={userId} handleLogout={onLogout}/>
                 <div className={s.content}>
                     <div className={s.leftSection}>
                         <MidTest users={users} userId={userId}/>

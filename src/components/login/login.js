@@ -35,17 +35,12 @@ const Login = ({authService,users}) => {
                 console.log(result.user.uid);
             });
     }   
-    const handleInfo = (e) =>{
-        e.preventDefault();
-        console.log(users);
-    }
     
     return(
         <div className={s.container}>
             <div className={s.loginBox}>
                 <h2 className={s.title}>갓생프로젝트에 오신 것을 환영합니다.</h2> 
                 <button onClick={handleLogin} className={`${s.btn} ${s.login}`}>구글 로그인</button>
-                <button onClick={handleInfo} className={`${s.btn} ${s.login}`}>유저 정보 가져오기</button>
             </div>
         </div>
     );

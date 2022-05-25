@@ -1,14 +1,20 @@
 import React, {useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import s from './header.module.css'
 
-const Header = ({handleLogout, users, userId,onDelete}) => {
+const Header = ({handleLogout, users, userId}) => {
+    const navigate = useNavigate();
     useEffect(()=>{
         console.log(users);
         console.log(userId);
         console.log(users[userId]?.nickname);
     },[users, userId]);
-    const handleDelete = () =>{
-        onDelete(userId);
+    const handleEdit = () =>{
+        navigate('/edit',
+        { state: 
+            {uid:userId}
+        }
+        );
     }
 
     return(
@@ -23,7 +29,7 @@ const Header = ({handleLogout, users, userId,onDelete}) => {
                 <h2 className={s.titleSmall}>{users[userId]?.nickname}</h2>
                 <img className={s.profileImg} src='/images/profile.png' alt='profile'></img>
                 <button className={s.logoutBtn} onClick={()=>handleLogout()}>logout</button>
-                <button className={s.logoutBtn} onClick={handleDelete}>delete Project</button>
+                <button className={s.logoutBtn} onClick={handleEdit}>Edit Project</button>
             </div>
             
         </header>
