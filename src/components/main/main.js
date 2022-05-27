@@ -8,11 +8,13 @@ import ToDoList from '../toDoList/toDoList';
 import Weather from '../weather/weather';
 import s from './main.module.css';
 import { useNavigate,useLocation } from 'react-router-dom';
+import OtherProject from '../other-project/other-project';
 
 const Main = ({setUsers, authService, users, database, handleChange,quote,weather,translateUnix}) => {
     const navigate = useNavigate();
     const { state } = useLocation(); 
     const [userId, setUserId] = useState();
+    const [showOthers, setShowOthers] = useState(false);
 
     useEffect(()=>{
         authService.onAuthChange(user => {
@@ -54,22 +56,34 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
         console.log(updated);
         handleChange(userId, updated);
     }
+    const handleShowUser = (value) =>{
+        if(value){
+            setShowOthers(true);
+        }else{
+            setShowOthers(false);
+        }
+        console.log(showOthers);
+    }
     return(
         <div className={s.container}>
             <div className={s.main}>
                 <Header users={users} userId={userId} handleLogout={onLogout}/>
-                <div className={s.content}>
-                    <div className={s.leftSection}>
-                        <MidTest users={users} userId={userId}/>
-                        <FindOthers />
-                        <Quote quote={quote}/>
+                {showOthers?
+                    <OtherProject users={users} handleShowUser={handleShowUser} />
+                    :
+                    <div className={s.content}>
+                        <div className={s.leftSection}>
+                            <MidTest users={users} userId={userId}/>
+                            <FindOthers handleShowUser={handleShowUser}/>
+                            <Quote quote={quote}/>
+                        </div>
+                        <ToDoList users={users} userId={userId} handleListChange={handleListChange}/>
+                        <div className={s.rightSection}>
+                            <Weather weather={weather} translateUnix={translateUnix}/>
+                            <AchieveRate />
+                        </div>
                     </div>
-                    <ToDoList users={users} userId={userId} handleListChange={handleListChange}/>
-                    <div className={s.rightSection}>
-                        <Weather weather={weather} translateUnix={translateUnix}/>
-                        <AchieveRate />
-                    </div>
-                </div>
+                }
             </div>
         </div>
     )
