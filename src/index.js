@@ -7,18 +7,18 @@ import AuthService from './service/auth_service';
 import StorageService from './service/storage_service';
 import Quote from './service/quote_service';
 import Weather from './service/weather_service';
-import TranslateUnix from './service/translateUnixTime';
+import Youtube from './service/youtube';
 
 
 const authService = new AuthService(firebaseApp);
 const database = new StorageService(firebaseApp);
 const quote = new Quote();
 const weather = new Weather();
-const translateUnix = new TranslateUnix();
+const youtube = new Youtube();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App authService={authService} database={database} quote={quote} weather={weather} translateUnix={translateUnix}/>
+    <App authService={authService} database={database} quote={quote} weather={weather} youtube={youtube}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -3,7 +3,7 @@ import s from './weather.module.css';
 const axios = require('axios');
 
 const Weather = ({weather,translateUnix}) => {
-    
+    const [day,setDay] = useState(['2022','May','30','12','30'])
     const [info, setInfo] = useState({
         dt: 0,
         city: 'Pohang',
@@ -35,11 +35,23 @@ const Weather = ({weather,translateUnix}) => {
             setInfo(new_info);
         });
     },[pos]);
+    useEffect(()=>{
+        const unixTimeStamp = info.dt;
+        const date = new Date(unixTimeStamp*1000);
+        const weeks = ['일','월', '화', '수', '목', '금', '토']
+        const year =date.getFullYear();
+        const month = date.getMonth()+1;
+        const day =weeks[date.getDay()];
+        const hour = date.getHours();
+        const minuite = date.getMinutes();
+        
+        setDay([year, month, day, hour, minuite]);
+    },[info]);
     return(
         <div className={s.box}>
             <div className={s.leftSection}>
                 <h2 className={s.titleMid}>{info.city}</h2>
-                <p className={s.paragraphSmall}>{info.dt}</p>
+                <p className={s.paragraphSmall}>{day[0]}년 {day[1]}월 {day[2]}요일 {day[3]}:{day[4]}</p>
                 <p className={s.paragraphLarge}>현재 기온 <span className={s.titleMid} >{info.temp_now}°C</span></p>
                 <p className={s.paragraphLarge}>최고 기온 <span className={s.titleMid} >{info.temp_max}°C</span></p>
             </div>

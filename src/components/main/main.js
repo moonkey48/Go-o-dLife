@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import AchieveRate from '../achieveRate/achieveRate';
 import FindOthers from '../findOthers/findOthers';
 import Header from '../header/header';
 import MidTest from '../midTest/midTest';
@@ -9,8 +8,9 @@ import Weather from '../weather/weather';
 import s from './main.module.css';
 import { useNavigate,useLocation } from 'react-router-dom';
 import OtherProject from '../other-project/other-project';
+import YoutubeVideo from '../youtubeVideo/youtubeVideo';
 
-const Main = ({setUsers, authService, users, database, handleChange,quote,weather,translateUnix}) => {
+const Main = ({setUsers, authService, users, database, handleChange,quote,weather,youtube}) => {
     const navigate = useNavigate();
     const { state } = useLocation(); 
     const [userId, setUserId] = useState();
@@ -79,8 +79,8 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
                         </div>
                         <ToDoList users={users} userId={userId} handleListChange={handleListChange}/>
                         <div className={s.rightSection}>
-                            <Weather weather={weather} translateUnix={translateUnix}/>
-                            <AchieveRate />
+                            <Weather weather={weather}/>
+                            <YoutubeVideo youtube={youtube} />
                         </div>
                     </div>
                 }
