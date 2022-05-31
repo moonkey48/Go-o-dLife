@@ -7,7 +7,6 @@ const ToDoList = ({users, userId, handleListChange}) => {
     const [list, setList] = useState([]);
     useEffect(()=>{
         handleListChange([...list]);
-        console.log([...list]);
     },[list]);
     
     useEffect(()=>{

@@ -19,7 +19,6 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
     useEffect(()=>{
         authService.onAuthChange(user => {
             if (user) {
-                console.log(user.uid);
                 setUserId(user.uid);
             } else {
                 navigate('/')
@@ -30,10 +29,10 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
         authService.logout();
     }
     useEffect(()=>{
-        console.log(state.uid);
-        console.log(users);
-        setUserId(state.uid);
-    },[]);
+        if (state.uid) {
+            setUserId(state.uid);
+        }
+    },[state.uid]);
 
     useEffect(()=>{
         if (!userId) {
@@ -53,7 +52,6 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
         }else{
             updated.toDoList = [];
         }
-        console.log(updated);
         handleChange(userId, updated);
     }
     const handleShowUser = (value) =>{
@@ -62,7 +60,6 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
         }else{
             setShowOthers(false);
         }
-        console.log(showOthers);
     }
     return(
         <div className={s.container}>

@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
 import s from './weather.module.css';
-const axios = require('axios');
 
 const Weather = ({weather,translateUnix}) => {
     const [day,setDay] = useState(['2022','May','30','12','30'])
@@ -20,6 +19,7 @@ const Weather = ({weather,translateUnix}) => {
             setPos([lat,lon])
         });
     },[]);
+
     useEffect(()=>{
         weather
         .getWeather(pos[0],pos[1])
@@ -34,7 +34,7 @@ const Weather = ({weather,translateUnix}) => {
             }
             setInfo(new_info);
         });
-    },[pos]);
+    },[pos,weather]);
     useEffect(()=>{
         const unixTimeStamp = info.dt;
         const date = new Date(unixTimeStamp*1000);

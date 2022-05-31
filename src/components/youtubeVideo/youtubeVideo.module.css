@@ -13,3 +13,29 @@
 .video{
     width: 100%;
 }
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 12pt;
+    align-items: center;
+}
+.inputDesc{
+    font-size:10pt;
+    font-weight: 600;
+    color: #575757;
+    width: 80px;
+}
+.input{
+    font-size: 12pt;
+    font-weight: 500;
+    color: #575757;
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    width: 100%;
+    background: none;
+}
+.input:focus{
+    outline: none;
+}

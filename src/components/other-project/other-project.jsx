@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import s from './other-project.module.css';
 
 const OtherProject = ({users,handleShowUser}) => {

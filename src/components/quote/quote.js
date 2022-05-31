@@ -10,7 +10,7 @@ const Quote = ({quote}) => {
             const text = result.quote;
             setMessage([text, author]);
         });
-    },[]);
+    },[quote]);
     return(
         <div className={s.box}>
             <h2 className={s.title}>

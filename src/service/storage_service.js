@@ -24,7 +24,6 @@ class StorageService{
 
         get(child(query, `/`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 const value = snapshot.val();
                 value && callback(value);
             } else {

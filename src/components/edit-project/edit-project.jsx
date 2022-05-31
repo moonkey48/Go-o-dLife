@@ -1,4 +1,4 @@
-import React,{useRef,useState,useEffect} from 'react';
+import React,{useRef,useState} from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
 import s from './edit-project.module.css';
 
@@ -11,11 +11,6 @@ const EditProject = ({users,editUser,handleDelete}) => {
     const dayRef = useRef();
     const testRef = useRef();
     const testDayRef = useRef();
-
-    useEffect(()=>{
-        console.log(state.uid);
-        console.log(users[state.uid]);
-    },[]);
 
     const checkType = () =>{
         const isNumDay = dayRef.current.value;
