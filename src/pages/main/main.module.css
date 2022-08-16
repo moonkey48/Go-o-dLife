@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main{
+    margin-top: 40px;
+    flex-basis: 1200px;
+
+}
+.content{
+    display: flex;
+    margin-top: 50px;
+    gap: 11px;
+}
+.leftSection{
+    display: flex;
+    flex-direction: column;
+    flex: 2 1 400px;
+    gap: 11px;
+}
+
+.rightSection{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 350px;
+    gap:11px;
+}

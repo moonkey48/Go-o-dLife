@@ -61,6 +61,7 @@ const Main = ({setUsers, authService, users, database, handleChange,quote,weathe
             setShowOthers(false);
         }
     }
+    
     return(
         <div className={s.container}>
             <div className={s.main}>

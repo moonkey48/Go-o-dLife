@@ -2,8 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import s from './header.module.css'
 
-const Header = ({handleLogout, users, userId}) => {
+
+const Header = ({users, userId,authService}) => {
     const navigate = useNavigate();
+    const handleLogout = () =>{
+        authService.logout();
+    }
    
     const handleEdit = () =>{
         navigate('/edit',

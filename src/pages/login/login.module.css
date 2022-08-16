@@ -1,0 +1,85 @@
+@keyframes intro-ani {
+    0%{
+        opacity: 0;
+    }
+    30%{
+        opacity: 100%;
+    }
+    70%{
+        opacity: 100%;
+    }
+    95%{
+        opacity: 0;
+    }
+    100%{
+        display: none;
+    }
+}
+@keyframes intro-out {
+    100%{
+        opacity: 1;
+    }
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+.loginBox{
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    display: flex;
+    opacity: 0;
+    animation: intro-out 1s forwards;
+    animation-delay: 4s;
+}
+.title{
+    font-size: 17pt;
+    color: #575757;
+    padding-bottom: 20px;
+}
+.btn{
+    width: 180px;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.login{
+    color: white;
+    background-color: #909090;
+}
+.sign{
+    color: #909090;
+    background-color: #E8E8E8;
+}
+.btnBox{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.login:hover{
+    background-color: #A5A5A5;
+}
+.sign:hover{
+    background-color: #E2E2E2;
+}
+.intro{
+    font-size: 12pt;
+    color: #575757;
+    animation: intro-ani 3s 1s forwards;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
