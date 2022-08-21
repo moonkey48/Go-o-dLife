@@ -9,9 +9,13 @@ class StorageService{
         set(ref(this.db, 'users/' + userId), user);
     }
     readData = (userId, callback) =>{
-        const query = ref(this.db, 'users/' + userId);
+        console.log('hello')
+        const query = ref(this.db, '/users/' + userId);
+        console.log(query)
         onValue(query, (snapshot) => {
+            console.log(snapshot)
             const user = snapshot.val();
+            console.log(user);
             callback(user);
         });
         return ()=>off(query);

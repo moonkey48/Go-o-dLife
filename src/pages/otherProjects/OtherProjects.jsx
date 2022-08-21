@@ -1,19 +1,14 @@
-import React, { useEffect, useId, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/header';
 import * as s from './OtherProjects.module.css'
 
 const OtherProjects = ({users,authService}) => {
-    const data = useLocation();
-    const [userId,setUserId] = useState(data.state.userId);
-    useEffect(()=>{
-        console.log(userId)
-    },[useId])
-    
+    const navigate = useNavigate();
     return(
     <>
-        <Link to='/main'><button className={s.btn}>돌아가기</button></Link>
-            <Header  users={users} userId={userId} authService={authService}/>
+            <Header authService={authService}/>
+            <button className={s.btn} onClick={()=>navigate(-1)}>돌아가기</button>
             <div className={s.content}>
             <ul className={s.list}>
                 {

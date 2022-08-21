@@ -1,53 +1,38 @@
-import React,{useState,useEffect} from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import React,{useEffect} from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Main from './Main';
 
-const MainContainer = ({setUsers, authService, users, database, handleChange,quote,weather,youtube}) => {
-    const navigate = useNavigate();
-    const { state } = useLocation(); 
-    const [userId, setUserId] = useState();
+const MainContainer = ({authService, handleChange,quote,weather,youtube}) => {
+    const navigate = useNavigate(); 
+    const user = useSelector(state=>state.authReducer);
 
     useEffect(()=>{
+        if(user.uid===''){
+            navigate('/')
+        }
+    },[user,navigate]);
+    
+    useEffect(()=>{
         authService.onAuthChange(user => {
-            if (user) {
-                setUserId(user.uid);
-            } else {
+            if (!user) {
                 navigate('/')
             }
         });
-    },[navigate, authService, userId]); 
-    
-    useEffect(()=>{
-        if (state.uid) {
-            setUserId(state.uid);
-        }
-    },[state.uid]);
-
-    useEffect(()=>{
-        if (!userId) {
-            return;
-        }
-        const stopSync = database.readData(userId, user => {
-            setUsers({...users,userId:user});
-        });
-        return stopSync();
-    },[database, userId]);
-
+    },[navigate, authService,user]); 
 
     const handleListChange = (list) =>{
-        let updated = {...users[userId]};
+        let updated = {...user};
         if(list){
             updated.toDoList = [...list];
         }else{
             updated.toDoList = [];
         }
-        handleChange(userId, updated);
+        handleChange(user.uid, updated);
     }
  
     
     return <Main 
-        users={users} 
-        userId={userId} 
         quote={quote} 
         handleListChange={handleListChange} 
         weather={weather} 

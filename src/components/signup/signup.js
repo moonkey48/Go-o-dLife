@@ -1,11 +1,15 @@
 import React,{useRef,useState} from 'react';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../../modules/user/user';
 import s from './signup.module.css';
 
 const Signup = ({handleNewUser,database}) => {
     const navigate = useNavigate();
-    const { state } = useLocation();
     const [alertText, setAlertText] = useState('');
+    const user = useSelector(state=>state.authReducer);
+    const dispatch = useDispatch();
+
     const formRef = useRef();
     const purposeRef = useRef();
     const dayRef = useRef();
@@ -34,18 +38,20 @@ const Signup = ({handleNewUser,database}) => {
     const handleSign = () =>{
         const typeResult = checkType();
         if(typeResult){
+            
             const new_user ={
-                uid: state.uid,
-                nickname: state.name,
-                email: state.email,
+                uid: user.uid,
+                nickname: user.nickname,
+                email: user.email,
                 purpose: purposeRef.current.value,
                 test: testRef.current.value,
                 toDoList: [['something to do',false]],
                 day: dayRef.current.value,
                 testDay: testDayRef.current.value,
             }
-            handleNewUser(state.uid, new_user);
-            navigate('/main',{state: {uid: state.uid}});
+            handleNewUser(user.uid, new_user);
+            dispatch(updateUser(new_user));
+            navigate('/main');
         }
     }
 
@@ -53,7 +59,7 @@ const Signup = ({handleNewUser,database}) => {
         <>
         <div className={s.container}>
             <div className={s.signBox}>
-                <h2 className={s.title}>안녕하세요 {state.name}. <br/> 갓생을 위해 아래 목표를 설정해주세요.</h2> 
+                <h2 className={s.title}>안녕하세요 {user.nickname}님. <br/> 갓생을 위해 아래 목표를 설정해주세요.</h2> 
                 <form ref={formRef} className={s.form}>
                     <div className={s.titleSmall}>원하는 목표를 입력해주세요.</div>
                     <input ref={purposeRef} className={s.input} type='text' placeholder='목표' ></input>
