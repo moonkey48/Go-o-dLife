@@ -1,14 +1,17 @@
-import React,{useRef,useState} from 'react';
+import React,{useEffect, useRef,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../../modules/user/user';
 import s from './signup.module.css';
 
-const Signup = ({handleNewUser,database}) => {
+const Signup = ({handleNewUser,users}) => {
     const navigate = useNavigate();
     const [alertText, setAlertText] = useState('');
     const user = useSelector(state=>state.authReducer);
     const dispatch = useDispatch();
+    useEffect(()=>{
+
+    })
 
     const formRef = useRef();
     const purposeRef = useRef();

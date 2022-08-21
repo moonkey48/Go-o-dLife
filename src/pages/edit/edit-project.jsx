@@ -1,30 +1,26 @@
 import React,{useRef,useState} from 'react';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import s from './edit-project.module.css';
 
-const EditProject = ({users,editUser,handleDelete}) => {
+const EditProject = ({editUser,handleDelete}) => {
     const navigate = useNavigate();
-    const { state } = useLocation();
     const [alertText, setAlertText] = useState('');
-    const formRef = useRef();
-    const purposeRef = useRef();
-    const dayRef = useRef();
-    const testRef = useRef();
-    const testDayRef = useRef();
+    const user = useSelector(data=>data.authReducer);
+    const [purpose,setPurpos] = useState(user.purpose || '');
+    const [day, setDay] = useState(user.day || 0);
+    const [testDay, setTestDay] = useState(user.testDay || 0);
+    const [test, setTest] = useState(user.test || '');
+    
 
     const checkType = () =>{
-        const isNumDay = dayRef.current.value;
-        const isNumTest = testDayRef.current.value;
-        const isPurpose = purposeRef.current.value;
-        const isTest = testRef.current.value;
-        
-        if(isNumDay===''||isNumTest===''||isPurpose===''||isTest===''){
+        if(purpose===''||test===''||testDay===''||day===''){
             setAlertText('모든 칸을 입력해주세요.');
             return false;
-        }else if(isNaN(isNumDay)){
+        }else if(isNaN(day)){
             setAlertText('목표 기간에 숫자만 입력해주세요.');
             return false;
-        }else if(isNaN(isNumTest)){
+        }else if(isNaN(testDay)){
             setAlertText('테스트 목표 기간에 숫자만 입력해주세요.');
             return false;
         }
@@ -34,19 +30,18 @@ const EditProject = ({users,editUser,handleDelete}) => {
     const handleEdit = () =>{
         const typeResult = checkType();
         if(typeResult){
-            const user = users[state.uid];
             const new_user ={
                 uid: user.uid,
                 nickname: user.nickname,
                 email: user.email,
-                purpose: purposeRef.current.value,
-                test: testRef.current.value,
+                purpose: purpose,
+                test: test,
                 toDoList: [...user.toDoList],
-                day: dayRef.current.value,
-                testDay: testDayRef.current.value,
+                day: day,
+                testDay: testDay,
             }
-            editUser(state.uid, new_user);
-            navigate('/main',{state: {uid: state.uid}});
+            editUser(user.uid, new_user);
+            navigate('/main');
         }
     }
 
@@ -58,16 +53,16 @@ const EditProject = ({users,editUser,handleDelete}) => {
         <div className={s.container}>
 
             <div className={s.signBox}>
-                <h2 className={s.title}>안녕하세요 {state.name}. <br/> 갓생을 위해 아래 목표를 설정해주세요.</h2> 
-                <form ref={formRef} className={s.form}>
+                <h2 className={s.title}>안녕하세요 {user.name}. <br/> 갓생을 위해 아래 목표를 설정해주세요.</h2> 
+                <form className={s.form}>
                     <div className={s.titleSmall}>원하는 목표를 입력해주세요.</div>
-                    <input ref={purposeRef} className={s.input} type='text' placeholder='목표' ></input>
+                    <input className={s.input} type='text' value={purpose} onChange={(e)=>setPurpos(e.currentTarget.value)} ></input>
                     <div className={s.titleSmall}>몇일동안 목표를 달성하고 싶으신가요?</div>
-                    <input ref={dayRef} className={s.input} type='text' placeholder='숫자만 입력해주세요.' ></input>
+                    <input className={s.input} type='text' value={day} onChange={(e)=>setDay(e.currentTarget.value)}  placeholder='숫자만 입력해주세요.' ></input>
                     <div className={s.titleSmall}>중간 점검 목표를 설정해주세요.</div>
-                    <input ref={testRef} className={s.input} type='text' placeholder='중간 테스트 목표' ></input>
+                    <input className={s.input} type='text' value={test} onChange={(e)=>setTest(e.currentTarget.value)} placeholder='중간 테스트 목표' ></input>
                     <div className={s.titleSmall}>몇일 뒤에 중간 테스트를 볼까요?</div>
-                    <input ref={testDayRef} className={s.input} type='text' placeholder='숫자만 입력해주세요.' ></input>
+                    <input className={s.input} type='text' value={testDay} onChange={(e)=>setTestDay(e.currentTarget.value)}  placeholder='숫자만 입력해주세요.' ></input>
                 </form>
                 <div className={s.alert}>{alertText}</div>
                 <div className={s.btnBox}>
